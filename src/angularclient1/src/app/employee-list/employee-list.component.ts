@@ -10,18 +10,22 @@ import { EmployeeServiceService } from '../employee-service.service';
 
 
 export class EmployeeListComponent implements OnInit {
-  employees=[];
-
+  employees = [];
 
   constructor(private employeeService: EmployeeServiceService) {
-  }
-
-  ngOnInit() {
     this.employeeService.findAll().subscribe(data => {
       console.log(data);
-      
-      this.employees = data;
+      this.employees = data.sort(function (a, b) {
+        var nameA = a.firstName.toLowerCase(), nameB = b.firstName.toLowerCase()
+        if (nameA < nameB)
+          return -1
+        if (nameA > nameB)
+          return 1
+        return 0
+      });
     });
   }
 
+  ngOnInit() {
+  }
 }

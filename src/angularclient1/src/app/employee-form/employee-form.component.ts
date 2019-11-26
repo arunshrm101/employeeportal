@@ -14,7 +14,7 @@ export class EmployeeFormComponent {
   employee: Employee;
   model: NgbDateStruct;
   date: {year: number, month: number};
-
+  dob;
   
 
   constructor(
@@ -33,6 +33,11 @@ export class EmployeeFormComponent {
     this.router.navigate(['/employee']);
   }
 
+  setDob(dob){
+    console.log(dob);
+    this.employee.dOBStr = dob.day+'/'+dob.month+'/'+dob.year;
+    
+  }
 
   
 
